@@ -19,3 +19,16 @@ export const fetchAllMovieWatch = (data) => {
     data,
   );
 };
+
+export const fetchAllMovieDisplay = (data) => {
+  return axios.get(
+    `${API_URL}/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1-2`,
+    data,
+  );
+};
+
+export const getMovieById = (itemId) => {
+  return axios.get(
+    `${API_URL}/movie/${itemId}?api_key=${API_KEY}&language=en-US`,
+  );
+};

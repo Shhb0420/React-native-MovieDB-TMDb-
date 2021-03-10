@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MoviesScreen from '../screens/MainScreen/Movies';
 import ProfileScreen from '../screens/MainScreen/Profile';
+import DetailMovie from '../screens/DetailMovieScreen';
 
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
@@ -50,6 +51,16 @@ const StackScreen = () => {
         name="Movies"
         component={MainScreenView}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DetailMovie"
+        component={DetailMovie}
+        options={({route}) => ({
+          title: route.params.title,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        })}
       />
     </Stack.Navigator>
   );

@@ -5,18 +5,19 @@ import {
   StatusBar,
   StyleSheet,
   TouchableOpacity,
-  TextInput,
   Image,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Carousel from 'react-native-snap-carousel';
 import {
   fetchAllMovie,
   fetchAllMoviePopular,
   fetchAllMovieWatch,
+  fetchAllMovieDisplay,
 } from '../../../utils/redux/actions/movie';
 import {useDispatch, useSelector} from 'react-redux';
 import {Text} from '../../../components';
+import {API_IMAGE} from '@env';
 
 const Movies = ({navigation}) => {
   const dispatch = useDispatch();
@@ -24,41 +25,59 @@ const Movies = ({navigation}) => {
     movie: stateMovie,
     popular: statePopular,
     watch: stateWatch,
+    display: stateDisplay,
     isPending,
   } = useSelector((state) => state.movie);
-  const urlPoster = 'https://image.tmdb.org/t/p/w500';
+  const urlPoster = API_IMAGE;
 
   useEffect(() => {
     dispatch(fetchAllMovie());
     dispatch(fetchAllMoviePopular());
     dispatch(fetchAllMovieWatch());
+    dispatch(fetchAllMovieDisplay());
   }, [dispatch]);
+
+  const _renderItem = ({item, index}) => {
+    return (
+      <TouchableOpacity
+        style={{marginTop: '12%'}}
+        key={item.id}
+        onPress={() =>
+          navigation.navigate('DetailMovie', {
+            itemId: item.id,
+            // categories: category_name,
+          })
+        }>
+        <Image
+          source={{uri: `${urlPoster}${item.poster_path}`}}
+          resizeMode="stretch"
+          style={{
+            borderRadius: 10,
+            width: '100%',
+            height: 250,
+          }}
+        />
+      </TouchableOpacity>
+    );
+  };
   return (
     <>
+      <StatusBar
+        barStyle="light-content"
+        translucent={true}
+        backgroundColor="#393534"
+      />
       <ScrollView
         vertical={true}
         showsVerticalScrollIndicator={false}
         style={styles.container}>
         <View>
-          <StatusBar
-            barStyle="light-content"
-            translucent={true}
-            backgroundColor="#393534"
+          <Carousel
+            data={stateDisplay}
+            renderItem={_renderItem}
+            sliderWidth={width}
+            itemWidth={280 + 20 * 2}
           />
-          {/* <View style={styles.Search}>
-            <TouchableOpacity>
-              <Icon name="search" color="black" size={30} />
-            </TouchableOpacity>
-            <TextInput
-              placeholder="Search for a movie, tv show, person...."
-              //   value={search}
-              //   onChangeText={(search) => setSearch(search)}
-              style={styles.form}
-              //   onSubmitEditing={() => {
-              //     navigation.navigate('Catalog', {search: search});
-              //   }}
-            />
-          </View> */}
         </View>
 
         <View style={styles.wrapContainer}>
@@ -92,7 +111,7 @@ const Movies = ({navigation}) => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        navigation.navigate('DetailProduct', {
+                        navigation.navigate('DetailMovie', {
                           itemId: id,
                           // categories: category_name,
                         })
@@ -145,7 +164,7 @@ const Movies = ({navigation}) => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        navigation.navigate('DetailProduct', {
+                        navigation.navigate('DetailMovie', {
                           itemId: id,
                           // categories: category_name,
                         })
@@ -198,7 +217,7 @@ const Movies = ({navigation}) => {
                   return (
                     <TouchableOpacity
                       onPress={() =>
-                        navigation.navigate('DetailProduct', {
+                        navigation.navigate('DetailMovie', {
                           itemId: id,
                           // categories: category_name,
                         })
@@ -265,7 +284,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   childText: {
-    paddingTop: '12%',
+    paddingTop: '5%',
   },
   container: {
     width,
@@ -277,7 +296,6 @@ const styles = StyleSheet.create({
   },
   titeText: {
     fontWeight: 'bold',
-    marginTop: '5%',
   },
   wrapTitleText: {
     textAlign: 'center',
@@ -292,6 +310,7 @@ const styles = StyleSheet.create({
   },
   wrapContainer: {
     marginHorizontal: '2%',
+    marginVertical: '2%',
   },
 });
 

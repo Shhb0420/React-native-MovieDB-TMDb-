@@ -21,3 +21,17 @@ export const fetchAllMovieWatch = (data) => {
     payload: api.fetchAllMovieWatch(data),
   };
 };
+
+export const fetchAllMovieDisplay = (data) => {
+  return {
+    type: actions.FETCH_ALL_MOVIE_DISPLAY,
+    payload: api.fetchAllMovieDisplay(data),
+  };
+};
+
+export const getMovieById = (itemId) => {
+  return {
+    type: actions.GET_MOVIE_BY_ID,
+    payload: api.getMovieById(itemId),
+  };
+};
