@@ -35,3 +35,10 @@ export const getMovieById = (itemId) => {
     payload: api.getMovieById(itemId),
   };
 };
+
+export const getVideoById = (itemId) => {
+  return {
+    type: actions.GET_VIDEO_BY_MOVIE_ID,
+    payload: api.getVideoById(itemId),
+  };
+};

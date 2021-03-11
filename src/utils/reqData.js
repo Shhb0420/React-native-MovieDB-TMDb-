@@ -32,3 +32,9 @@ export const getMovieById = (itemId) => {
     `${API_URL}/movie/${itemId}?api_key=${API_KEY}&language=en-US`,
   );
 };
+
+export const getVideoById = (itemId) => {
+  return axios.get(
+    `${API_URL}/movie/${itemId}/videos?api_key=${API_KEY}&language=en-US`,
+  );
+};

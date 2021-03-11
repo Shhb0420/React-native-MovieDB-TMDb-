@@ -45,7 +45,7 @@ const Movies = ({navigation}) => {
         onPress={() =>
           navigation.navigate('DetailMovie', {
             itemId: item.id,
-            // categories: category_name,
+            title: item.original_title,
           })
         }>
         <Image
@@ -113,7 +113,7 @@ const Movies = ({navigation}) => {
                       onPress={() =>
                         navigation.navigate('DetailMovie', {
                           itemId: id,
-                          // categories: category_name,
+                          title: original_title,
                         })
                       }
                       style={{paddingHorizontal: 5}}
@@ -166,7 +166,7 @@ const Movies = ({navigation}) => {
                       onPress={() =>
                         navigation.navigate('DetailMovie', {
                           itemId: id,
-                          // categories: category_name,
+                          title: original_title,
                         })
                       }
                       style={{paddingHorizontal: 5}}
@@ -219,7 +219,7 @@ const Movies = ({navigation}) => {
                       onPress={() =>
                         navigation.navigate('DetailMovie', {
                           itemId: id,
-                          // categories: category_name,
+                          title: original_title,
                         })
                       }
                       style={{paddingHorizontal: 5}}

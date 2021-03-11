@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native';
+import {Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import MoviesScreen from '../screens/MainScreen/Movies';
@@ -44,6 +44,8 @@ const MainScreenView = () => {
   );
 };
 
+const {width, height} = Dimensions.get('window');
+
 const StackScreen = () => {
   return (
     <Stack.Navigator>
@@ -59,7 +61,13 @@ const StackScreen = () => {
           title: route.params.title,
           headerTitleStyle: {
             fontWeight: 'bold',
+            textAlign: 'center',
+            width: '90%',
           },
+          headerStyle: {
+            backgroundColor: '#393534',
+          },
+          headerTintColor: 'white',
         })}
       />
     </Stack.Navigator>

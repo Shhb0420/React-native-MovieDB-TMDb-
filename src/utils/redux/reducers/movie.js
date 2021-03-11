@@ -8,6 +8,7 @@ const initialState = {
   watch: [],
   display: [],
   movieDetail: {},
+  video: [],
   isPending: false,
   isFulfilled: false,
   isRejected: false,
@@ -153,6 +154,29 @@ const movieReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         movieDetail: payload.data,
+        isPending: false,
+        isRejected: true,
+        isFulfilled: true,
+        // status: payload.data.data.msg,
+      };
+    case actions.GET_VIDEO_BY_MOVIE_ID + actions.PENDING:
+      return {
+        ...state,
+        isPending: true,
+      };
+    case actions.GET_VIDEO_BY_MOVIE_ID + actions.REJECTED:
+      return {
+        ...state,
+        isPending: false,
+        isRejected: true,
+        isFulfilled: false,
+        status: payload.status_message,
+        // msg: payload.data.data.msg,
+      };
+    case actions.GET_VIDEO_BY_MOVIE_ID + actions.FULFILLED:
+      return {
+        ...state,
+        video: payload.data.results,
         isPending: false,
         isRejected: true,
         isFulfilled: true,
