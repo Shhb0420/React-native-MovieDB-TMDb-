@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
@@ -35,10 +36,39 @@ const Movies = ({navigation}) => {
     dispatch(fetchAllMoviePopular());
     dispatch(fetchAllMovieWatch());
     dispatch(fetchAllMovieDisplay());
+
+    // if(isPending) {
+    //   // return {isPending ?
+    //   //   //   <View style={{marginTop: '12%'}}>
+    //   //   //   <Image
+    //   //   //     source={{uri: `${Loader}`}}
+    //   //   //     resizeMode="stretch"
+    //   //   //     style={{
+    //   //   //       borderRadius: 10,
+    //   //   //       width: '100%',
+    //   //   //       height: 250,
+    //   //   //     }}
+    //   //   //   />
+    //   //   //   </View> :
+    //   //   // }
+    // }
   }, [dispatch]);
 
   const _renderItem = ({item, index}) => {
     return (
+      // {isPending ?
+      //   <View style={{marginTop: '12%'}}>
+      //   <Image
+      //     source={{uri: `${Loader}`}}
+      //     resizeMode="stretch"
+      //     style={{
+      //       borderRadius: 10,
+      //       width: '100%',
+      //       height: 250,
+      //     }}
+      //   />
+      //   </View> :
+      // }
       <TouchableOpacity
         style={{marginTop: '12%'}}
         key={item.id}
@@ -48,15 +78,26 @@ const Movies = ({navigation}) => {
             title: item.original_title,
           })
         }>
-        <Image
-          source={{uri: `${urlPoster}${item.poster_path}`}}
-          resizeMode="stretch"
-          style={{
-            borderRadius: 10,
-            width: '100%',
-            height: 250,
-          }}
-        />
+        {isPending ? (
+          <ActivityIndicator
+            size="large"
+            color="#00ff00"
+            style={{
+              width: '100%',
+              height: 250,
+            }}
+          />
+        ) : (
+          <Image
+            source={{uri: `${urlPoster}${item.poster_path}`}}
+            resizeMode="stretch"
+            style={{
+              borderRadius: 10,
+              width: '100%',
+              height: 250,
+            }}
+          />
+        )}
       </TouchableOpacity>
     );
   };
@@ -118,14 +159,25 @@ const Movies = ({navigation}) => {
                       }
                       style={{paddingHorizontal: 5}}
                       key={id}>
-                      <Image
-                        source={{uri: `${urlPoster}${poster_path}`}}
-                        style={{
-                          borderRadius: 10,
-                          width: 150,
-                          height: 250,
-                        }}
-                      />
+                      {isPending ? (
+                        <ActivityIndicator
+                          size="large"
+                          color="#00ff00"
+                          style={{
+                            width: '100%',
+                            height: 250,
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          source={{uri: `${urlPoster}${poster_path}`}}
+                          style={{
+                            borderRadius: 10,
+                            width: 150,
+                            height: 250,
+                          }}
+                        />
+                      )}
                     </TouchableOpacity>
                   );
                 },
@@ -171,14 +223,25 @@ const Movies = ({navigation}) => {
                       }
                       style={{paddingHorizontal: 5}}
                       key={id}>
-                      <Image
-                        source={{uri: `${urlPoster}${poster_path}`}}
-                        style={{
-                          borderRadius: 10,
-                          width: 150,
-                          height: 250,
-                        }}
-                      />
+                      {isPending ? (
+                        <ActivityIndicator
+                          size="large"
+                          color="#00ff00"
+                          style={{
+                            width: '100%',
+                            height: 250,
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          source={{uri: `${urlPoster}${poster_path}`}}
+                          style={{
+                            borderRadius: 10,
+                            width: 150,
+                            height: 250,
+                          }}
+                        />
+                      )}
                     </TouchableOpacity>
                   );
                 },
@@ -224,14 +287,25 @@ const Movies = ({navigation}) => {
                       }
                       style={{paddingHorizontal: 5}}
                       key={id}>
-                      <Image
-                        source={{uri: `${urlPoster}${poster_path}`}}
-                        style={{
-                          borderRadius: 10,
-                          width: 150,
-                          height: 250,
-                        }}
-                      />
+                      {isPending ? (
+                        <ActivityIndicator
+                          size="large"
+                          color="#00ff00"
+                          style={{
+                            width: '100%',
+                            height: 250,
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          source={{uri: `${urlPoster}${poster_path}`}}
+                          style={{
+                            borderRadius: 10,
+                            width: 150,
+                            height: 250,
+                          }}
+                        />
+                      )}
                     </TouchableOpacity>
                   );
                 },

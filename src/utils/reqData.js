@@ -38,3 +38,9 @@ export const getVideoById = (itemId) => {
     `${API_URL}/movie/${itemId}/videos?api_key=${API_KEY}&language=en-US`,
   );
 };
+
+// export const searchMovie = (keyword) => {
+//   return axios.get(
+//     `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${keyword}&page=1&include_adult=false`,
+//   );
+// };
